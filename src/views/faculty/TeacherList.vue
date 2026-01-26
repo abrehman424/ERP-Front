@@ -1,20 +1,20 @@
 <template>
   <div class="relative w-full min-h-screen pl-0 pr-0 sm:pl-0 sm:pr-0 lg:pl-1 lg:pr-0 py-2 sm:py-3 lg:py-4">
     <!-- Top Bar Header -->
-    <div class="relative z-10 mb-6 rounded-xl border border-gray-200/50 bg-white/60 px-6 py-4 shadow-lg backdrop-filter backdrop-blur-xl flex items-center justify-between">
+    <div class="relative z-10 mb-6 rounded-xl border border-gray-200/50 bg-white/60 px-6 py-4 shadow-lg backdrop-filter backdrop-blur-xl sm:flex items-center justify-between">
       <h2 class="text-base font-medium text-gray-600 tracking-tight flex items-center gap-2">
         <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
         Teacher Management
       </h2>
-      <div class="flex items-center gap-4">
-        <nav class="flex items-center gap-2 text-base font-medium text-gray-500">
+      <div class="grid grid-cols-1 sm:flex items-center gap-3">
+        <nav class="text-end sm:flex sm:items-center gap-2 text-base font-medium text-gray-500">
           <span class="hover:text-purple-600 cursor-pointer transition-colors duration-200">Dashboard</span>
           <span class="mx-2">|</span>
           <span class="text-gray-900 font-bold">Faculty</span>
         </nav>
         <button 
           @click="handleAddTeacher"
-          class="h-9 px-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-medium rounded-full hover:from-green-600 hover:to-emerald-600 transition-all duration-300 shadow-sm hover:shadow-md transform origin-left hover:scale-105 flex items-center gap-2"
+          class="h-9 px-14 sm:px-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-medium rounded-full hover:from-green-600 hover:to-emerald-600 transition-all duration-300 shadow-sm hover:shadow-md transform origin-left hover:scale-105 flex items-center gap-2"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
@@ -178,7 +178,108 @@
 
     <!-- Teachers Table -->
     <div v-else class="relative z-10">
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <!-- MOBILE VIEW (Cards) -->
+  <!-- ===================== -->
+  <div class="block lg:hidden space-y-4">
+
+    <div
+      v-for="teacher in teachers"
+      :key="teacher.id"
+      class="bg-white rounded-xl shadow border border-gray-200 p-4"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10">
+            <img
+              v-if="getProfilePicture(teacher)"
+              :src="getProfilePicture(teacher)"
+              class="w-10 h-10 rounded-full object-cover"
+            />
+            <div
+              v-else
+              class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-semibold"
+            >
+              {{ getTeacherInitials(teacher) }}
+            </div>
+          </div>
+
+          <div>
+            <div class="font-medium text-sm">
+              {{ teacher.first_name }} {{ teacher.last_name }}
+            </div>
+            <div class="text-xs text-gray-500">
+              {{ teacher.designation || '-' }}
+            </div>
+          </div>
+        </div>
+
+        <button
+          @click="toggleTeacherDetails(teacher.id)"
+          class="p-2 rounded-full hover:bg-gray-100"
+        >
+          <svg
+            class="w-5 h-5 transition-transform"
+            :class="{ 'rotate-90': expandedTeachers[teacher.id] }"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Basic Info -->
+      <div class="mt-3 text-xs text-gray-600 space-y-1">
+        <div><strong>Department:</strong> {{ teacher.department?.name || '-' }}</div>
+        <div><strong>Phone:</strong> {{ teacher.phone_number || '-' }}</div>
+        <div><strong>Email:</strong> {{ teacher.email || '-' }}</div>
+      </div>
+
+      <!-- Status -->
+      <div class="mt-3">
+        <span
+          :class="[
+            'px-3 py-1 rounded-full text-xs font-medium',
+            getStatusClass(teacher.status)
+          ]"
+        >
+          {{ teacher.status || 'active' }}
+        </span>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-4 grid grid-cols-3 gap-2">
+        <button @click="handleView(teacher)" class="bg-cyan-600 text-white py-1 rounded text-xs">
+          View
+        </button>
+        <button @click="handleEdit(teacher)" class="bg-green-600 text-white py-1 rounded text-xs">
+          Edit
+        </button>
+        <button @click="handleDelete(teacher)" class="bg-red-600 text-white py-1 rounded text-xs">
+          Delete
+        </button>
+      </div>
+
+      <!-- Expandable -->
+      <div
+        v-if="expandedTeachers[teacher.id]"
+        class="mt-4 border-t pt-3 text-xs text-gray-700 space-y-2"
+      >
+        <div><strong>CNIC:</strong> {{ teacher.cnic || 'N/A' }}</div>
+        <div><strong>Qualification:</strong> {{ teacher.qualification || 'N/A' }}</div>
+        <div><strong>Experience:</strong> {{ teacher.years_of_experience || 'N/A' }} years</div>
+        <div><strong>Address:</strong> {{ teacher.address || 'N/A' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- DESKTOP TABLE VIEW -->
+  <!-- ===================== -->
+  <div class="hidden lg:block bg-white rounded-lg shadow-lg overflow-hidden">
         <!-- Table Content -->
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">

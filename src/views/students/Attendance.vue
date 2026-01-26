@@ -4,12 +4,14 @@
     <!-- Main Attendance Selection Page -->
     <div v-if="!selectedAttendanceType" class="w-full">
       <!-- Top Bar Header -->
-      <div class="w-full mx-auto mt-2 mb-4 flex items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500">
+      <div class="w-full mx-auto mt-2 mb-4 sm:flex grid grid-cols-1 gap-1  sm:items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500">
         <h2 class="text-base font-medium text-gray-600 tracking-tight flex items-center gap-2">
           <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
           Student Attendance Management
         </h2>
-        <nav class="flex items-center gap-2 text-base font-medium text-gray-500">
+        <!-- <nav class="flex sm:items-center  sm:gap-2   text-base font-medium text-gray-500"> -->
+          <nav
+    class="flex  justify-center sm:justify-end items-center sm:gap-2 text-sm sm:text-base font-medium text-gray-500">
           <span class="hover:text-purple-600 cursor-pointer transition-colors duration-200">Dashboard</span>
           <span class="mx-2">|</span>
           <span class="hover:text-purple-600 cursor-pointer transition-colors duration-200">Students</span>
@@ -202,12 +204,12 @@
       </div>
 
       <!-- Reports Header -->
-      <div class="w-full mx-auto mt-2 mb-6 flex items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500">
+      <div class="w-full mx-auto mt-2 mb-6 sm:flex gap-1 grid grid-cols-1 items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500">
         <h2 class="text-base font-medium text-gray-600 tracking-tight flex items-center gap-2">
           <div class="w-2 h-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full animate-pulse"></div>
           Attendance Reports & Analytics
         </h2>
-        <nav class="flex items-center gap-2 text-base font-medium text-gray-500">
+        <nav class="flex flex-wrap items-center sm:gap-2 text-sm justify-center sm:justify-end sm:text-base font-medium text-gray-500">
           <span class="hover:text-green-600 cursor-pointer transition-colors duration-200">Dashboard</span>
           <span class="mx-2">|</span>
           <span class="hover:text-green-600 cursor-pointer transition-colors duration-200">Students</span>
@@ -719,12 +721,12 @@
     </div>
 
           <!-- Top Bar Header -->
-    <div class="w-full max-w-7xl mx-auto mt-2 mb-4 flex items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500 border border-gray-200">
+    <div class="w-full max-w-7xl mx-auto mt-2 mb-4 sm:flex grid grid-cols-1 gap-1 items-center justify-between bg-white/90 rounded-lg shadow-lg py-2 px-5 transition-all duration-500 border border-gray-200">
         <h2 class="text-base font-medium text-gray-600 tracking-tight flex items-center gap-2">
           <div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
           {{ selectedAttendanceType === 'subject' ? 'Subject-wise Attendance' : 'Class-wise Attendance' }}
         </h2>
-      <nav class="flex items-center gap-2 text-base font-medium text-gray-500">
+      <nav class="flex justify-center text-sm items-center sm:justify-end gap-2 sm:text-base font-medium text-gray-500">
         <span class="hover:text-purple-600 cursor-pointer transition-colors duration-200">Dashboard</span>
         <span class="mx-2">|</span>
         <span class="hover:text-purple-600 cursor-pointer transition-colors duration-200">Students</span>

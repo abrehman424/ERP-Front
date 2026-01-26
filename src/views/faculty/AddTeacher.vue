@@ -19,7 +19,7 @@
     <!-- Mode Toggle Section -->
     <div class="relative z-10 mb-6" v-if="!route.params.id">
       <div class="bg-white/90 rounded-lg shadow-lg p-6 border border-gray-200">
-        <div class="flex items-center justify-between">
+        <div class="grid grid-cols-1 sm:flex items-center justify-between">
           <div>
             <h3 class="text-lg font-semibold text-gray-900 mb-1">Registration Mode</h3>
             <p class="text-sm text-gray-600">Choose how you want to add teachers</p>
@@ -551,7 +551,7 @@
       <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
         <!-- Header -->
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
-          <div class="flex items-center justify-between">
+          <div class="grid grid-cols-1 gap-2 sm:gap-0 sm:flex items-center justify-between">
             <div>
               <h2 class="text-base font-medium text-white mb-1 tracking-tight">Add Multiple Teachers</h2>
               <p class="text-indigo-100 text-sm">Add teachers quickly with essential information only</p>
@@ -570,8 +570,8 @@
           <div v-for="(teacher, index) in multipleTeachers" :key="index" class="border border-gray-200 rounded-xl p-6 relative">
             <!-- Teacher Form Header -->
             <div class="flex items-center justify-between mb-6">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+              <div class="flex items-center gap-3 sm:gap-3 ">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
                   {{ index + 1 }}
                 </div>
                 <div>
@@ -706,18 +706,18 @@
         </div>
 
         <!-- Multiple Teachers Actions -->
-        <div class="bg-white px-8 py-6 border-t border-gray-200 flex justify-between items-center">
+        <div class="grid grid-cols-1 gap-2 bg-white px-8 py-6 border-t border-gray-200 sm:flex justify-between items-center">
           <div class="text-sm text-gray-600">
             Total Teachers: <span class="font-semibold text-indigo-600">{{ multipleTeachers.length }}</span>
           </div>
-          <div class="flex space-x-3">
-            <button @click="addNewTeacherForm" type="button" class="h-9 px-8 rounded-full bg-white hover:bg-white text-gray-900 text-sm font-bold border border-gray-200 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
+          <div class="grid grid-cols-1 gap-2 sm:flex space-x-3">
+            <button @click="addNewTeacherForm" type="button" class="h-9 px-10 items-center sm:px-8 rounded-full bg-white hover:bg-white text-gray-900 text-sm font-bold border border-gray-200 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
               </svg>
               Add Another
             </button>
-            <button @click="submitMultipleTeachers" type="button" class="h-9 px-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-sm font-bold text-white shadow hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" :disabled="loading">
+            <button @click="submitMultipleTeachers" type="button" class="h-9 px-3 sm:px-8 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-sm font-bold text-white shadow hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none" :disabled="loading">
               <svg v-if="loading" class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
