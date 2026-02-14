@@ -7,6 +7,7 @@
       </div>
     </div>
     <div ref="chartContainer" :style="{ height: height }"></div>
+    
   </div>
 </template>
 
@@ -58,12 +59,51 @@ const chartContainer = ref(null)
 let chartInstance = null
 
 const defaultOptions = {
-  chart: {
-    backgroundColor: 'transparent',
-    style: {
-      fontFamily: 'Inter, system-ui, sans-serif'
-    }
-  },
+  // chart: {
+  //   backgroundColor: 'transparent',
+  //   style: {
+  //     fontFamily: 'Inter, system-ui, sans-serif'
+  //   }
+  // },
+
+     chart: {
+        type: 'pie',
+        custom: {},
+        events: {
+            render() {
+                const chart = this,
+                    series = chart.series[0];
+                let customLabel = chart.options.chart.custom.label;
+
+                if (!customLabel) {
+                    customLabel = chart.options.chart.custom.label =
+                        chart.renderer.label(
+                            '<strong class="text-xl text-[#0F172A]">100%</strong> <br/>' +
+                             '<p class="text-[10px]  text-[#64748B]">Collected</p>'
+                        )
+                            .css({
+                                textAnchor: 'middle',
+                            })
+                            .add();
+                }
+
+                const x = series.center[0] + chart.plotLeft,
+                    y = series.center[1] + chart.plotTop -
+                    (customLabel.attr('height') / 2);
+
+                customLabel.attr({
+                    x,
+                    y
+                });
+                // Set font size based on chart diameter
+                customLabel.css({
+                    justify: 'center',
+                    display: 'flex',
+                    align: 'center',
+                });
+            }
+        }
+    },
   credits: {
     enabled: false
   },
@@ -96,7 +136,8 @@ const defaultOptions = {
         duration: 1500
       }
     }
-  }
+  },
+   
 }
 
 const initChart = () => {

@@ -381,67 +381,100 @@
 
         <!-- Compact Pie Chart -->
 
-  <div
-    class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-5 sm:p-6 shadow-sm backdrop-blur-xl hover:shadow-lg transition-all duration-300 overflow-hidden"
-  >
-    <!-- Subtle animated gradient overlay on hover -->
-    <div
-      class="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-indigo-50/0 to-purple-50/0 group-hover:from-blue-50/20 group-hover:via-indigo-50/15 group-hover:to-purple-50/20 transition-all duration-500 pointer-events-none"
-    ></div>
-
-    <div class="relative z-10">
-      <!-- Header -->
-      <div class="mb-5">
-        <h3 class="text-lg font-bold text-gray-900">Fee Distribution</h3>
-      </div>
-
-      <!-- Chart Container -->
-      <div class="flex flex-col items-center justify-center">
-        <!-- Doughnut Chart with Center Label -->
-        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto">
-          <HighchartsWrapper
-            ref="feeChart"
-            :options="feeChartOptions"
-            :loading="false"
-            height="100%"
-          />
-
-          <!-- Center Text Overlay (fallback / custom styling if Highcharts label not enough) -->
+        <div class="flex  gap-4 w-full">
           <div
-            class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-          >
-            <div class="text-4xl sm:text-5xl font-bold text-gray-900">100%</div>
-            <div class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Collected</div>
-          </div>
-        </div>
-
-        <!-- Legend Below -->
-        <div class="mt-6 w-full max-w-xs space-y-2.5">
-          <div
-            v-for="(item, index) in legendItems"
-            :key="index"
-            class="flex items-center justify-between text-sm"
-          >
-            <div class="flex items-center gap-2.5">
-              <div
-                class="w-3 h-3 rounded-full"
-                :style="{ backgroundColor: item.color }"
-              ></div>
-              <span class="text-gray-700 font-medium">{{ item.label }}</span>
+            class="group relative rounded-xl border w-full border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
+            <!-- Animated gradient overlay on hover -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-pink-50/0 via-purple-50/0 to-indigo-50/0 group-hover:from-pink-50/30 group-hover:via-purple-50/20 group-hover:to-indigo-50/30 transition-all duration-500 pointer-events-none">
             </div>
-            <span class="text-gray-600 font-semibold">{{ item.percent }}%</span>
+
+            <div class="relative z-10">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                <div>
+                  <h3 class="text-lg font-bold text-[#0F172A]">Fee Distribution</h3>
+                </div>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+
+                  <!-- Chart Type Dropdown - Right side below date -->
+                </div>
+              </div>
+              <div class="h-64 relative">
+                <HighchartsWrapper ref="pieChart" :options="pieChartOptions" :loading="pieChartLoading"
+                  height="256px" />
+              </div>  
+              <!-- This goes BELOW the <HighchartsWrapper> or wherever your chart is rendered -->
+              <div class=" space-y-3 pt-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full" style="background-color: #5B13EC"></div>
+                  <div class="flex-1 text-sm font-normal text-[#0F172A]">Tuition Fees</div>
+                  <div class="text-sm font-bold text-[#0F172A]">65%</div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full" style="background-color: #FBBF24"></div>
+                  <div class="flex-1 text-sm font-normal text-[#0F172A]">Transport</div>
+                  <div class="text-sm font-bold text-[#0F172A]">25%</div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full" style="background-color: #CBD5E1"></div>
+                  <div class="flex-1 text-sm font-normal text-[#0F172A]">Exams</div>
+                  <div class="text-sm font-bold text-[#0F172A]">10%</div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="bg-[#FFFFFFB2]  rounded-3xl shadow border border-[#FFFFFF66] w-full p-8 ">
+            <!-- Header -->
+            <div class="flex justify-between items-center">
+              <p class="text-lg text-[#0F172A] font-bold ">
+                Registration Rate
+              </p>
+              <div class="bg-[#D1FAE5] text-[#059669] px-2.5 py-1 rounded-md text-sm font-medium">
+                On Track
+              </div>
+            </div>
+
+            <!-- Main percentage & description -->
+            <div class="flex flex-col items-start gap-3 py-8 md:py-20">
+              <h2 class="text-5xl sm:text-6xl font-bold text-[#5B13EC] leading-none">
+                88%
+              </h2>
+              <p class=" text-sm text-[#64748B] font-normal">
+                Completion of current academic year admission targets.
+              </p>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="h-3 w-full bg-[#F1F5F9] rounded-full overflow-hidden">
+              <div class="h-full bg-[#5B13EC] rounded-full" style="width: 90%"></div>
+            </div>
+
+            <!-- Footer stats + link -->
+            <div class="flex justify-between items-center pt-16 ">
+              <p class="text-xs text-[#94A3B8] font-medium justify-end">
+                350 / 400 Students enrolled
+              </p>
+              <button class="flex items-center gap-1.5 text-[#5B13EC] text-sm font-bold ">
+                View Details
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4.67578 0L9.35156 4.67578L4.67578 9.35156L3.85547 8.53125L7.10938 5.25H0V4.10156H7.10938L3.85547 0.820312L4.67578 0Z"
+                    fill="#5B13EC" />
+                </svg>
+
+              </button>
+            </div>
+          </div>
+
         </div>
-      </div>
-    </div>
-  </div>
-
-
       </div>
 
       <!-- Compact Sidebar -->
       <div class="space-y-4 animate-fade-in-up" style="animation-delay: 500ms">
-        <!-- Compact Recent Activities -->
+
         <div
           class="group relative rounded-xl border border-gray-200/60 bg-[#5B13EC] p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
           <!-- Animated gradient overlay on hover -->
@@ -783,7 +816,15 @@ export default {
     const showQuickActions = ref(false)
 
 
-    
+    // These should come from your real data (API, store, props, etc.)
+    const totalCollected = ref(1250000)
+    const totalExpected = ref(1250000)
+
+    const collectedPercentage = computed(() => {
+      if (totalExpected.value <= 0) return 100
+      const percent = (totalCollected.value / totalExpected.value) * 100
+      return Math.round(percent)
+    })
 
     // Date filters
     const mainDateFilter = ref({
@@ -795,7 +836,9 @@ export default {
       startDate: ''
     })
 
-  
+    const pieChartDateFilter = ref({
+      startDate: ''
+    })
 
     const activitiesDateFilter = ref({
       startDate: ''
@@ -1037,7 +1080,7 @@ export default {
 
         colorClass: 'bg-gradient-to-br from-yellow-500 to-orange-500'
       },
-      
+
     ])
 
     return {
@@ -1130,87 +1173,125 @@ export default {
         layout: { padding: { top: 10, right: 10 } }
       }
     },
+    // pieChartOptions() {
+    //   const pieData = [
+    //     { name: 'Tuition Fee', y: 55, color: '#3B82F6' },
+    //     { name: 'Examination Fee', y: 20, color: '#10B981' },
+    //     { name: 'Library Fee', y: 10, color: '#F59E0B' },
+    //     { name: 'Transport Fee', y: 10, color: '#6366F1' },
+    //     { name: 'Other Fees', y: 5, color: '#EC4899' }
+    //   ]
+
+    //   // Determine chart type based on selection
+
+
+    // }
+
     pieChartOptions() {
-      const pieData = [
-        { name: 'Tuition Fee', y: 55, color: '#3B82F6' },
-        { name: 'Examination Fee', y: 20, color: '#10B981' },
-        { name: 'Library Fee', y: 10, color: '#F59E0B' },
-        { name: 'Transport Fee', y: 10, color: '#6366F1' },
-        { name: 'Other Fees', y: 5, color: '#EC4899' }
+      // Your real data – colors used only in the custom legend below
+      const chartData = [
+        { name: 'Tuition Fees', y: 65, color: '#9333EA' },
+        { name: 'Transport', y: 25, color: '#F59E0B' },
+        { name: 'Exams', y: 10, color: '#9CA3AF' }
       ]
 
-      // Determine chart type based on selection
-      const chartType = this.selectedPieChartType === 'doughnut' ? 'pie' :
-        this.selectedPieChartType === 'column' ? 'column' :
-          this.selectedPieChartType === 'bar' ? 'bar' : 'pie'
+      // Replace this line with your actual value (ref, prop, computed, etc.)
+      const collectedPercentage = 100;  // ← change to your real dynamic value
 
       return {
         chart: {
-          type: chartType,
+          type: 'pie',
           backgroundColor: 'transparent',
-          animation: {
-            duration: 1000,
-            easing: 'easeOutQuart'
-          }
+          spacing: [0, 0, 80, 0],           // space for legend below
+          height: 260                       // adjust if needed to match your container
         },
-        title: {
-          text: null
-        },
-        tooltip: {
-          pointFormat: '<b>{point.percentage:.1f}%</b><br/>Amount: PKR {point.customAmount}',
-          backgroundColor: 'rgba(31, 41, 55, 0.95)',
-          style: {
-            color: '#F9FAFB'
-          }
-        },
+
+        title: { text: null },
+
+        tooltip: { enabled: true },
+
         plotOptions: {
           pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            innerSize: this.selectedPieChartType === 'doughnut' ? '50%' : '0%',
-            dataLabels: {
-              enabled: true,
-              format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-              style: {
-                fontSize: '12px',
-                fontWeight: '500'
-              }
-            },
-            showInLegend: true,
-            animation: {
-              duration: 1000
-            }
-          },
-          bar: {
-            animation: {
-              duration: 1000
-            }
-          },
-          column: {
-            animation: {
-              duration: 1000
-            }
+            innerSize: '80%',               // ring thickness – feels close to reference
+            borderWidth: 0,
+            shadow: false,
+            dataLabels: { enabled: false },
+            animation: { duration: 1000 }
           }
         },
+
         series: [{
           name: 'Fee Distribution',
           colorByPoint: true,
-          data: pieData.map(item => ({
+          data: chartData.map(item => ({
             ...item,
-            customAmount: this.formatNumber((item.y / 100) * this.receivedFee)
+            color: '#F1F5F9',               // only this color is visible (the ring)
+            opacity: 1,
+            borderColor: '#F1F5F9',
+            visible: true
           }))
         }],
-        legend: {
-          align: 'center',
-          verticalAlign: 'bottom',
-          layout: 'horizontal',
-          itemStyle: {
-            fontSize: '12px',
-            fontWeight: '500'
+
+        legend: { enabled: false },
+
+        events: {
+          render: function () {
+            const chart = this
+
+            if (chart.centerTextGroup) {
+              chart.centerTextGroup.destroy()
+            }
+
+            chart.centerTextGroup = chart.renderer.g().add()
+
+            const centerX = chart.plotLeft + chart.plotWidth / 2
+            const centerY = chart.plotTop + chart.plotHeight / 2
+
+            // ── Center text logic to match your image when 100% ──
+            let bigText = `${collectedPercentage}%`
+            let subText = 'Collected'
+
+            // When not 100%, show the limit/reference
+            if (collectedPercentage !== 100) {
+              subText = 'of 100%'
+            }
+
+            // Big percentage (matches bold/dark style in image)
+            chart.renderer.text(
+              bigText,
+              centerX,
+              centerY - 6               // slightly tighter spacing
+            )
+              .css({
+                color: '#0F172A',         // darker like your other card text
+                fontSize: '48px',         // bit smaller than 52px to feel more balanced
+                fontWeight: '700',
+                textAnchor: 'middle',
+                lineHeight: '1'
+              })
+              .add(chart.centerTextGroup)
+
+            // Subtitle ("Collected" or "of 100%")
+            chart.renderer.text(
+              subText,
+              centerX,
+              centerY + 28              // adjusted vertical position
+            )
+              .css({
+                color: '#64748B',         // gray like your description text
+                fontSize: '14px',
+                fontWeight: '500',
+                textAnchor: 'middle'
+              })
+              .add(chart.centerTextGroup)
           }
-        }
+        },
+
+        credits: { enabled: false },
+        accessibility: { enabled: false }
       }
     }
+
   },
   // data() {
   //   return {
