@@ -66,36 +66,26 @@
       <div class="flex items-center gap-2 bg-white p-1 rounded-full shadow-sm border text-[#475569] font-bold">
 
         <!-- Last 30 Days -->
-       <button
-  @click="setPeriod('30')"
-  :class="[
-    'px-4 py-2 text-sm rounded-full transition',
-    selectedPeriod === '30' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
-  ]"
->
-  Last 30 Days
-</button>
+        <button @click="setPeriod('30')" :class="[
+          'px-4 py-2 text-sm rounded-full transition',
+          selectedPeriod === '30' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+        ]">
+          Last 30 Days
+        </button>
 
-<button
-  @click="setPeriod('quarter')"
-  :class="[
-    'px-4 py-2 text-sm rounded-full transition',
-    selectedPeriod === 'quarter' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
-  ]"
->
-  This Quarter
-</button>
+        <button @click="setPeriod('quarter')" :class="[
+          'px-4 py-2 text-sm rounded-full transition',
+          selectedPeriod === 'quarter' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+        ]">
+          This Quarter
+        </button>
 
-<button
-  @click="setPeriod('ytd')"
-  :class="[
-    'px-4 py-2 text-sm rounded-full transition',
-    selectedPeriod === 'ytd' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
-  ]"
->
-  Year to Date
-</button>
-
+        <button @click="setPeriod('ytd')" :class="[
+          'px-4 py-2 text-sm rounded-full transition',
+          selectedPeriod === 'ytd' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+        ]">
+          Year to Date
+        </button>
 
         <!-- Calendar -->
         <div class="relative font-bold">
@@ -108,7 +98,6 @@
             </svg>
             Custom
           </button>
-
           <!-- Calendar Popup -->
           <div v-if="mainDateFilter.startDate === true"
             class="absolute right-0 mt-2 bg-white rounded-xl shadow-lg border p-3 z-50">
@@ -119,14 +108,193 @@
       </div>
     </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
+      <!-- Total Students -->
+      <div
+        class="relative overflow-hidden bg-white rounded-xl border border-[#ffffff] shadow p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2 justify-between">
+          <div>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="16" fill="#DBEAFE" />
+              <path
+                d="M23.9844 20.9844C24.8594 20.9844 25.8125 21.1094 26.8438 21.3594C27.875 21.6094 28.8281 22.0156 29.7031 22.5781C30.5781 23.1406 31.0156 23.7812 31.0156 24.5V26.9844H25.0156V24.5C25.0156 23.125 24.3594 21.9688 23.0469 21.0312C23.2656 21 23.5781 20.9844 23.9844 20.9844ZM13.1562 21.3594C14.1875 21.1094 15.1406 20.9844 16.0156 20.9844C16.8906 20.9844 17.8438 21.1094 18.875 21.3594C19.9062 21.6094 20.8438 22.0156 21.6875 22.5781C22.5625 23.1406 23 23.7812 23 24.5V26.9844H8.98438V24.5C8.98438 23.7812 9.42188 23.1406 10.2969 22.5781C11.1719 22.0156 12.125 21.6094 13.1562 21.3594ZM18.0781 18.125C17.5156 18.7188 16.8281 19.0156 16.0156 19.0156C15.2031 19.0156 14.5 18.7188 13.9062 18.125C13.3125 17.5312 13.0156 16.8281 13.0156 16.0156C13.0156 15.2031 13.3125 14.5 13.9062 13.9062C14.5 13.3125 15.2031 13.0156 16.0156 13.0156C16.8281 13.0156 17.5156 13.3125 18.0781 13.9062C18.6719 14.5 18.9688 15.2031 18.9688 16.0156C18.9688 16.8281 18.6719 17.5312 18.0781 18.125ZM26.0938 18.125C25.5 18.7188 24.7969 19.0156 23.9844 19.0156C23.1719 19.0156 22.4688 18.7188 21.875 18.125C21.2812 17.5312 20.9844 16.8281 20.9844 16.0156C20.9844 15.2031 21.2812 14.5 21.875 13.9062C22.4688 13.3125 23.1719 13.0156 23.9844 13.0156C24.7969 13.0156 25.5 13.3125 26.0938 13.9062C26.6875 14.5 26.9844 15.2031 26.9844 16.0156C26.9844 16.8281 26.6875 17.5312 26.0938 18.125Z"
+                fill="#2563EB" />
+            </svg>
+          </div>
+          <div class="flex items-center gap-1">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.98438 0H9.98438V3L8.83594 1.85156L5.69531 4.99219L3.70312 3L0.703125 6L0 5.29688L3.70312 1.59375L5.69531 3.58594L8.13281 1.14844L6.98438 0Z"
+                fill="#10B981" />
+            </svg>
+            <p class="text-green-500 font-semibold text-sm">+12%</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 pt-2">
+          <p class="text-[#64748B] text-sm font-medium">Total Students</p>
+          <p class="text-2xl font-bold text-[#0F172A]">12,450</p>
+        </div>
+        <div class="absolute bottom-0 right-0 opacity-2 pointer-events-none">
+          <svg width="96" height="48" viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.1">
+              <g clip-path="url(#clip0_2_329)">
+                <path d="M0 38.4C16 35.2 32 36.8 48 43.2C64 49.6 80 44.8 96 28.8" stroke="black" stroke-width="5.76" />
+              </g>
+            </g>
+            <defs>
+              <clipPath id="clip0_2_329">
+                <rect width="96" height="48" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Active Staff -->
+      <div class="relative overflow-hidden bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2 justify-between">
+          <div>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="16" fill="#F3E8FF" />
+              <path
+                d="M26 21.5V20H22.0156V21.5H26ZM26 24.5V23H22.0156V24.5H26ZM20.9844 17V11.9844H19.0156V17H20.9844ZM20 26V25.25C20 24.8125 19.6562 24.4531 18.9688 24.1719C18.2812 23.8906 17.625 23.75 17 23.75C16.375 23.75 15.7188 23.8906 15.0312 24.1719C14.3438 24.4531 14 24.8125 14 25.25V26H20ZM18.0781 20.4219C17.7969 20.1406 17.4375 20 17 20C16.5625 20 16.2031 20.1406 15.9219 20.4219C15.6406 20.7031 15.5 21.0625 15.5 21.5C15.5 21.9375 15.6406 22.2969 15.9219 22.5781C16.2031 22.8594 16.5625 23 17 23C17.4375 23 17.7969 22.8594 18.0781 22.5781C18.3594 22.2969 18.5 21.9375 18.5 21.5C18.5 21.0625 18.3594 20.7031 18.0781 20.4219ZM28.0156 14.9844C28.5469 14.9844 29 15.1875 29.375 15.5938C29.7812 16 29.9844 16.4688 29.9844 17V28.0156C29.9844 28.5469 29.7812 29.0156 29.375 29.4219C29 29.7969 28.5469 29.9844 28.0156 29.9844H11.9844C11.4531 29.9844 10.9844 29.7969 10.5781 29.4219C10.2031 29.0156 10.0156 28.5469 10.0156 28.0156V17C10.0156 16.4688 10.2031 16 10.5781 15.5938C10.9844 15.1875 11.4531 14.9844 11.9844 14.9844H17V11.9844C17 11.4531 17.2031 11 17.6094 10.625C18.0156 10.2188 18.4844 10.0156 19.0156 10.0156H20.9844C21.5156 10.0156 21.9844 10.2188 22.3906 10.625C22.7969 11 23 11.4531 23 11.9844V14.9844H28.0156Z"
+                fill="#9333EA" />
+            </svg>
+
+          </div>
+          <div class="flex items-center gap-1">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.98438 0H9.98438V3L8.83594 1.85156L5.69531 4.99219L3.70312 3L0.703125 6L0 5.29688L3.70312 1.59375L5.69531 3.58594L8.13281 1.14844L6.98438 0Z"
+                fill="#10B981" />
+            </svg>
+            <p class="text-green-500 font-semibold text-sm">+12%</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 pt-2">
+          <p class="text-[#64748B] text-sm font-medium">Active Staff</p>
+          <p class="text-2xl font-bold text-[#0F172A]">840</p>
+        </div>
+
+        <div class="absolute bottom-0 right-0 opacity-4.5 ">
+          <svg width="96" height="48" viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.1">
+              <g clip-path="url(#clip0_2_341)">
+                <path d="M0 43.2C16 40 32 33.6 48 24C64 14.4 80 9.60001 96 9.60001" stroke="black"
+                  stroke-width="5.76" />
+              </g>
+            </g>
+            <defs>
+              <clipPath id="clip0_2_341">
+                <rect width="96" height="48" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Monthly Revenue -->
+      <div class="relative bg-white rounded-2xl shadow p-4 overflow-hidden">
+
+        <!-- Top Row -->
+        <div class="flex justify-between items-start">
+          <div>
+            <!-- Icon SVG -->
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="16" fill="#D1FAE5" />
+              <path
+                d="M26.9844 22.0156C26.9844 22.5469 26.7812 23.0156 26.375 23.4219C26 23.7969 25.5469 23.9844 25.0156 23.9844H11C10.4375 23.9844 9.95312 23.7969 9.54688 23.4219C9.17188 23.0156 8.98438 22.5469 8.98438 22.0156V14C8.98438 13.4375 9.17188 12.9688 9.54688 12.5938C9.95312 12.1875 10.4375 11.9844 11 11.9844H25.0156C25.5469 11.9844 26 12.1875 26.375 12.5938C26.7812 12.9688 26.9844 13.4375 26.9844 14V22.0156ZM17.9844 20.9844C18.5469 20.9844 19.0469 20.8594 19.4844 20.6094C19.9531 20.3281 20.3125 19.9688 20.5625 19.5312C20.8438 19.0625 20.9844 18.5469 20.9844 17.9844C20.9844 17.4531 20.8438 16.9688 20.5625 16.5312C20.3125 16.0625 19.9531 15.6875 19.4844 15.4062C19.0469 15.125 18.5469 14.9844 17.9844 14.9844C17.4531 14.9844 16.9531 15.125 16.4844 15.4062C16.0469 15.6875 15.6875 16.0625 15.4062 16.5312C15.125 16.9688 14.9844 17.4531 14.9844 17.9844C14.9844 18.5469 15.125 19.0625 15.4062 19.5312C15.6875 19.9688 16.0469 20.3281 16.4844 20.6094C16.9531 20.8594 17.4531 20.9844 17.9844 20.9844ZM31.0156 14.9844H29V26H11.9844V28.0156H29C29.5625 28.0156 30.0312 27.8281 30.4062 27.4531C30.8125 27.0469 31.0156 26.5625 31.0156 26V14.9844Z"
+                fill="#059669" />
+            </svg>
+
+          </div>
+
+          <div class="flex items-center gap-1 text-red-500 font-semibold text-sm">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.98438 6L8.13281 4.85156L5.69531 2.41406L3.70312 4.40625L0 0.703125L0.703125 0L3.70312 3L5.69531 1.00781L8.83594 4.14844L9.98438 3V6H6.98438Z"
+                fill="#F43F5E" />
+            </svg>
+            -5%
+          </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="flex flex-col gap-2 pt-4 align-middle">
+          <p class="text-[#64748B] text-sm font-medium">Monthly Revenue</p>
+          <p class="text-2xl font-bold text-[#0F172A]">$420,500</p>
+        </div>
+
+        <!-- Background Chart SVG -->
+        <svg class="absolute right-0.5 bottom-0.5" width="96" height="48" viewBox="0 0 96 48" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.1">
+            <g clip-path="url(#clip0_2_353)">
+              <path d="M0 9.60001C16 12.8 32 20.8 48 33.6C64 46.4 80 49.6 96 43.2" stroke="black" stroke-width="5.76" />
+            </g>
+          </g>
+          <defs>
+            <clipPath id="clip0_2_353">
+              <rect width="96" height="48" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+
+
+      </div>
+
+      <!-- Avg Attendance -->
+      <div class="relative overflow-hidden bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+        <div class="flex items-center space-x-2  justify-between">
+          <div>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="16" fill="#FEF3C7" />
+              <path
+                d="M28.0156 29V16.0156H11.9844V29H28.0156ZM28.0156 11C28.5469 11 29 11.2031 29.375 11.6094C29.7812 12.0156 29.9844 12.4844 29.9844 13.0156V29C29.9844 29.5312 29.7812 30 29.375 30.4062C29 30.8125 28.5469 31.0156 28.0156 31.0156H11.9844C11.4531 31.0156 10.9844 30.8125 10.5781 30.4062C10.2031 30 10.0156 29.5312 10.0156 29V13.0156C10.0156 12.4844 10.2031 12.0156 10.5781 11.6094C10.9844 11.2031 11.4531 11 11.9844 11H13.0156V8.98438H14.9844V11H25.0156V8.98438H26.9844V11H28.0156Z"
+                fill="#D97706" />
+            </svg>
+
+
+          </div>
+          <div class="flex items-center gap-1">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.98438 0H9.98438V3L8.83594 1.85156L5.69531 4.99219L3.70312 3L0.703125 6L0 5.29688L3.70312 1.59375L5.69531 3.58594L8.13281 1.14844L6.98438 0Z"
+                fill="#10B981" />
+            </svg>
+            <p class="text-green-500 font-semibold text-sm">+0.8%</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 pt-2">
+          <p class="text-[#64748B] text-sm font-medium">Avg Attendance</p>
+          <p class="text-2xl font-bold text-[#0F172A]">94.2%</p>
+        </div>
+        <div class="absolute bottom-0 right-0 opacity-2.5 pointer-events-none">
+          <svg width="96" height="48" viewBox="0 0 96 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g opacity="0.1">
+              <g clip-path="url(#clip0_2_365)">
+                <path d="M0 33.6C16 30.4 32 30.4 48 33.6C64 36.8 80 33.6 96 24" stroke="black" stroke-width="5.76" />
+              </g>
+            </g>
+            <defs>
+              <clipPath id="clip0_2_365">
+                <rect width="96" height="48" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
 
 
 
 
 
     <!-- Compact Date Filter -->
-    <div
+    <!-- <div
       class="relative z-10 my-4 rounded-2xl border border-gray-200/60 bg-white/90 backdrop-blur-xl px-4 sm:px-5 py-3 shadow-sm">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-2">
@@ -146,30 +314,28 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Compact Statistics Cards -->
-    <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
+    <!-- <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4">
       <StatCard v-for="(stat, index) in statisticsCards" :key="index" :stat="stat" @click="showStatDetails" />
-    </div>
+    </div> -->
+
 
     <!-- Compact Charts Section -->
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-4 pt-4">
       <!-- Charts -->
       <div class="lg:col-span-2 space-y-4">
         <!-- Compact Bar Chart -->
         <div
-          class="relative overflow-hidden rounded-xl border border-gray-200/80 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300">
+          class="relative overflow-hidden rounded-xl border border-[] bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-all duration-300">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
             <div>
               <h3 class="text-sm font-bold text-gray-900 mb-0.5">Monthly Income Overview</h3>
-              <p class="text-[10px] text-gray-500">Fee collection trends</p>
+              <p class="text-[10px] text-gray-500">Actual vs Projected Revenue</p>
             </div>
-            <div class="flex items-center gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5">
-                <label class="text-[10px] font-medium text-gray-600">Date:</label>
-                <CompactDatePicker v-model="chartDateFilter.startDate" placeholder="" @change="handleChartDateChange" />
-              </div>
+            <div class="flex items-center gap-4 flex-wrap">
+
               <!-- Chart Type Dropdown - Right side below date -->
               <div class="relative">
                 <select v-model="selectedChartType" @change="handleChartTypeChange"
@@ -181,7 +347,20 @@
                   <option value="radar">Radar Chart</option>
                 </select>
               </div>
-              <select v-model="selectedPeriod" @change="updateChartData"
+
+              <div class="flex items-center gap-3 text-[10px]">
+                <div class="flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-purple-600 inline-block"></span>
+                  <span class="text-gray-500">Actual</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>
+                  <span class="text-gray-500">Projected</span>
+                </div>
+              </div>
+
+
+              <!-- <select v-model="selectedPeriod" @change="updateChartData"
                 class="h-7 rounded-lg border border-gray-200 bg-white px-2 pr-6 text-[10px] font-medium text-gray-900 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 transition-all duration-200 appearance-none cursor-pointer hover:border-indigo-300 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'10\' height=\'10\' viewBox=\'0 0 10 10\'%3E%3Cpath fill=\'%233b3b4f\' d=\'M5 7.35L1.65 4 2.35 3.3 5 5.95 7.65 3.3 8.35 4z\'/%3E%3C/svg%3E')] bg-no-repeat bg-[length:10px] bg-[position:calc(100%-0.5rem)_center] shadow-sm hover:shadow">
                 <option value="6">6M</option>
                 <option value="12">1Y</option>
@@ -190,7 +369,8 @@
               <button @click="toggleChartView"
                 class="h-7 w-7 rounded-lg border border-gray-200 bg-white flex items-center justify-center text-gray-500 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-300 transition-all duration-200 shadow-sm hover:shadow">
                 <component :is="chartView === 'bar' ? IconChartLine : IconChartBar" :size="14" :stroke-width="2" />
-              </button>
+              </button> -->
+
             </div>
           </div>
           <div class="h-64 relative">
@@ -200,133 +380,151 @@
         </div>
 
         <!-- Compact Pie Chart -->
-        <div
-          class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
-          <!-- Animated gradient overlay on hover -->
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-pink-50/0 via-purple-50/0 to-indigo-50/0 group-hover:from-pink-50/30 group-hover:via-purple-50/20 group-hover:to-indigo-50/30 transition-all duration-500 pointer-events-none">
-          </div>
 
-          <div class="relative z-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-              <div>
-                <h3 class="text-sm font-bold text-gray-900 mb-0.5">Fee Distribution</h3>
-                <p class="text-[10px] text-gray-500">By categories</p>
-              </div>
-              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-                <div class="flex items-center gap-1.5">
-                  <label class="text-[10px] font-medium text-gray-600">Date:</label>
-                  <CompactDatePicker v-model="pieChartDateFilter.startDate" placeholder=""
-                    @change="handlePieChartDateChange" />
-                </div>
-                <!-- Chart Type Dropdown - Right side below date -->
-                <div class="relative">
-                  <select v-model="selectedPieChartType" @change="handlePieChartTypeChange"
-                    class="h-7 rounded-lg border border-gray-200 bg-white px-3 pr-8 text-[10px] font-medium text-gray-900 focus:ring-2 focus:ring-purple-500/20 focus:border-purple-300 transition-all duration-200 appearance-none cursor-pointer hover:border-purple-300 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23a855f7\' d=\'M6 9L2 5h8z\'/%3E%3C/svg%3E')] bg-no-repeat bg-[length:12px] bg-[position:calc(100%-0.5rem)_center] shadow-sm hover:shadow">
-                    <option value="pie">Pie Chart</option>
-                    <option value="doughnut">Doughnut Chart</option>
-                    <option value="bar">Bar Chart</option>
-                    <option value="column">Column Chart</option>
-                  </select>
-                </div>
-                <div class="flex items-center bg-indigo-50 rounded-lg p-1 shadow-sm">
-                  <button v-for="period in ['Daily', 'Weekly', 'Monthly']" :key="period"
-                    :class="['px-2 py-1 rounded text-[10px] font-medium transition-all duration-200', feeDistributionPeriod === period ? 'bg-white text-indigo-700 shadow-sm' : 'text-indigo-600 hover:text-indigo-700']"
-                    @click="feeDistributionPeriod = period; updatePieChart()">
-                    {{ period }}
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="h-64 relative">
-              <HighchartsWrapper ref="pieChart" :options="pieChartOptions" :loading="pieChartLoading" height="256px" />
-            </div>
+  <div
+    class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-5 sm:p-6 shadow-sm backdrop-blur-xl hover:shadow-lg transition-all duration-300 overflow-hidden"
+  >
+    <!-- Subtle animated gradient overlay on hover -->
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-indigo-50/0 to-purple-50/0 group-hover:from-blue-50/20 group-hover:via-indigo-50/15 group-hover:to-purple-50/20 transition-all duration-500 pointer-events-none"
+    ></div>
+
+    <div class="relative z-10">
+      <!-- Header -->
+      <div class="mb-5">
+        <h3 class="text-lg font-bold text-gray-900">Fee Distribution</h3>
+      </div>
+
+      <!-- Chart Container -->
+      <div class="flex flex-col items-center justify-center">
+        <!-- Doughnut Chart with Center Label -->
+        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto">
+          <HighchartsWrapper
+            ref="feeChart"
+            :options="feeChartOptions"
+            :loading="false"
+            height="100%"
+          />
+
+          <!-- Center Text Overlay (fallback / custom styling if Highcharts label not enough) -->
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          >
+            <div class="text-4xl sm:text-5xl font-bold text-gray-900">100%</div>
+            <div class="text-xs sm:text-sm text-gray-500 font-medium mt-1">Collected</div>
           </div>
         </div>
+
+        <!-- Legend Below -->
+        <div class="mt-6 w-full max-w-xs space-y-2.5">
+          <div
+            v-for="(item, index) in legendItems"
+            :key="index"
+            class="flex items-center justify-between text-sm"
+          >
+            <div class="flex items-center gap-2.5">
+              <div
+                class="w-3 h-3 rounded-full"
+                :style="{ backgroundColor: item.color }"
+              ></div>
+              <span class="text-gray-700 font-medium">{{ item.label }}</span>
+            </div>
+            <span class="text-gray-600 font-semibold">{{ item.percent }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
       </div>
 
       <!-- Compact Sidebar -->
       <div class="space-y-4 animate-fade-in-up" style="animation-delay: 500ms">
         <!-- Compact Recent Activities -->
         <div
-          class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
+          class="group relative rounded-xl border border-gray-200/60 bg-[#5B13EC] p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
+          <!-- Animated gradient overlay on hover -->
+          <div>
+            <h1 class="text-2xl font-bold text-[#FFFFFF]">Quick Platform Stats</h1>
+          </div>
+          <div class="flex flex-col gap-3 py-3">
+            <div class="flex p-3 gap-2.5 pt-4 shadow-sm rounded-2xl bg-[#FFFFFF1A]  ">
+              <div class="flex items-center">
+                <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M9.98438 13.0312L16.5938 6.42188L15.1875 5.01562L9.98438 10.1719L7.92188 8.10938L6.51562 9.51562L9.98438 13.0312ZM19.3594 6.04688C20.6406 6.14062 21.7344 6.67188 22.6406 7.64062C23.5469 8.57812 24 9.70312 24 11.0156C24 12.3906 23.5 13.5781 22.5 14.5781C21.5312 15.5469 20.3594 16.0312 18.9844 16.0312H6C4.34375 16.0312 2.92188 15.4531 1.73438 14.2969C0.578125 13.1094 0 11.6875 0 10.0312C0 8.5625 0.515625 7.25 1.54688 6.09375C2.60938 4.90625 3.875 4.23438 5.34375 4.07812C6 2.85938 6.92188 1.875 8.10938 1.125C9.29688 0.375 10.5938 0 12 0C13.6875 0 15.25 0.59375 16.6875 1.78125C18.1562 2.96875 19.0469 4.39062 19.3594 6.04688Z"
+                    fill="white" fill-opacity="0.7" />
+                </svg>
+              </div>
+
+              <div class="flex justify-between items-center w-full">
+                <div>
+                  <p class="text-sm font-bold text-[#FFFFFFB2] ">Server Status</p>
+                  <p class="text-sm font-bold text-[#FFFFFF] ">Operational</p>
+                </div>
+                <div class=" rounded-full  bg-[#34D399] w-2 h-2 inline-block "></div>
+              </div>
+
+            </div>
+
+            <div class="flex p-3 gap-2.5 pt-4 shadow-sm rounded-2xl bg-[#FFFFFF1A]  ">
+              <div class="flex items-center">
+                <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M18 4.03125V2.01562L9.98438 7.03125L1.96875 2.01562V4.03125L9.98438 9L18 4.03125ZM18 0C18.5312 0 18.9844 0.203125 19.3594 0.609375C19.7656 1.01563 19.9688 1.48438 19.9688 2.01562V14.0156C19.9688 14.5469 19.7656 15.0156 19.3594 15.4219C18.9844 15.8281 18.5312 16.0312 18 16.0312H1.96875C1.4375 16.0312 0.96875 15.8281 0.5625 15.4219C0.1875 15.0156 0 14.5469 0 14.0156V2.01562C0 1.48438 0.1875 1.01563 0.5625 0.609375C0.96875 0.203125 1.4375 0 1.96875 0H18Z"
+                    fill="white" fill-opacity="0.7" />
+                </svg>
+
+              </div>
+
+              <div class="flex justify-between items-center w-full">
+                <div>
+                  <p class="text-sm font-bold text-[#FFFFFFB2] ">Unread Reports</p>
+                  <p class="text-sm font-bold text-[#FFFFFF] ">24 Pending</p>
+                </div>
+                <p class=" rounded-lg text-[10px] text-[#FFFFFF] font-bold px-2 py-1 shadow bg-[#FFFFFF33]  ">Urgent</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div
+          class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 ">
           <!-- Animated gradient overlay on hover -->
           <div
             class="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-indigo-50/0 to-purple-50/0 group-hover:from-blue-50/20 group-hover:via-indigo-50/15 group-hover:to-purple-50/20 transition-all duration-500 pointer-events-none">
           </div>
-          <div class="relative z-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-              <h3 class="text-sm font-bold text-gray-900">Recent Activities</h3>
-              <div class="flex items-center gap-2">
-                <CompactDatePicker v-model="mainDateFilter.startDate" placeholder="" @change="handleMainDateChange" />
-                <button @click="viewAllActivities"
-                  class="h-7 px-3 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-[10px] font-semibold text-white shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 active:scale-95">
-                  View All
-                </button>
-              </div>
-            </div>
-            <div class="space-y-2 max-h-80 overflow-y-auto">
-              <div v-for="(activity, index) in filteredActivities" :key="index" class="animate-slide-in-right"
-                :style="{ animationDelay: `${index * 50}ms` }">
-                <ActivityItem :activity="activity" size="sm" variant="minimal" :glow-color="activity.color"
-                  @click="handleActivityClick" />
-              </div>
+
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 ">
+            <h3 class="text-lg font-bold text-gray-900">Recent Activities</h3>
+            <div>
+              <button class=" text-xs justify-center font-bold text-[#5B13EC] ">
+                View All
+              </button>
             </div>
           </div>
-        </div>
-
-        <!-- Compact Quick Stats -->
-        <div
-          class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
-          <!-- Animated gradient overlay on hover -->
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-green-50/0 via-emerald-50/0 to-teal-50/0 group-hover:from-green-50/20 group-hover:via-emerald-50/15 group-hover:to-teal-50/20 transition-all duration-500 pointer-events-none">
-          </div>
-          <div class="relative z-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-              <h3 class="text-sm font-bold text-gray-900">Quick Stats</h3>
-              <div class="flex items-center gap-2">
-                <CompactDatePicker v-model="quickStatsDateFilter.startDate" placeholder=""
-                  @change="handleQuickStatsDateChange" />
-              </div>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div v-for="(stat, index) in filteredQuickStats" :key="index"
-                class="relative bg-gradient-to-br p-3 rounded-lg border hover:shadow-md transition-all duration-300 cursor-pointer group overflow-hidden animate-scale-in"
-                :class="stat.bgClass" :style="{ animationDelay: `${index * 100}ms` }"
-                @click="showQuickStatDetails(stat)">
-                <!-- Icon in top right corner -->
-                <div class="absolute top-2 right-2 opacity-20 group-hover:opacity-30 transition-opacity duration-200">
-                  <component :is="stat.iconComponent" :size="20" :stroke-width="1.5" />
-                </div>
-
-                <p class="text-[10px] font-bold mb-1 tracking-wide uppercase relative z-10" :class="stat.textClass">{{
-                  stat.label }}</p>
-                <p class="text-sm font-black tracking-tight relative z-10" :class="stat.valueClass">{{ stat.value }}</p>
-                <p class="text-[10px] font-semibold mt-0.5 relative z-10" :class="stat.changeClass">{{ stat.change }}
-                </p>
-                <div class="mt-1.5 w-full bg-white/20 rounded-full h-0.5 relative z-10">
-                  <div class="h-0.5 rounded-full transition-all duration-300" :class="stat.progressClass"
-                    :style="{ width: stat.percentage + '%' }"></div>
-                </div>
-              </div>
+          <div class="space-y-2 max-h-80 py-3">
+            <div v-for="(activity, index) in filteredActivities" :key="index" class="animate-slide-in-right"
+              :style="{ animationDelay: `${index * 50}ms` }">
+              <ActivityItem :activity="activity" size="sm" variant="minimal" :glow-color="activity.color"
+                @click="handleActivityClick" />
             </div>
           </div>
         </div>
 
         <!-- Compact Upcoming Events -->
         <div
-          class="group relative rounded-xl border border-gray-200/60 bg-white/90 p-4 sm:p-5 shadow-sm backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
+          class="group relative rounded-2xl border border-[#E2E8F0] bg-[#FFFFFF] p-4 sm:p-5 shadow backdrop-blur-xl hover:shadow-md transition-all duration-300 overflow-hidden">
           <!-- Animated gradient overlay on hover -->
           <div
             class="absolute inset-0 bg-gradient-to-br from-orange-50/0 via-amber-50/0 to-yellow-50/0 group-hover:from-orange-50/20 group-hover:via-amber-50/15 group-hover:to-yellow-50/20 transition-all duration-500 pointer-events-none">
           </div>
           <div class="relative z-10">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
-              <h3 class="text-sm font-bold text-gray-900">Upcoming Events</h3>
-              <div class="flex items-center gap-2">
-                <CompactDatePicker v-model="mainDateFilter.startDate" placeholder="" @change="handleMainDateChange" />
-              </div>
+            <div class="flex justify-between items-start sm:items-center gap-3 mb-4">
+              <h3 class="text-lg font-bold text-gray-900">Upcoming Events</h3>
             </div>
             <div class="space-y-2">
               <div v-for="(event, index) in filteredEvents" :key="index" class="animate-slide-in-right"
@@ -353,6 +551,7 @@
         </div>
       </div>
     </Transition>
+
 
     <!-- Compact Quick Actions Floating Button -->
     <div class="fixed bottom-4 right-4 z-40">
@@ -584,6 +783,8 @@ export default {
     const showQuickActions = ref(false)
 
 
+    
+
     // Date filters
     const mainDateFilter = ref({
       startDate: '',
@@ -594,9 +795,7 @@ export default {
       startDate: ''
     })
 
-    const pieChartDateFilter = ref({
-      startDate: ''
-    })
+  
 
     const activitiesDateFilter = ref({
       startDate: ''
@@ -654,42 +853,45 @@ export default {
     }
 
     // Enhanced activities with Tabler SVG icon components
+    // In your component/script setup
     const recentActivities = ref([
       {
-        content: 'New student registration completed for Riya Sharma',
-        time: '10 minutes ago',
+        content: 'Fee Payment Received',
+        badge: '#1029',
+        time: '2 minutes ago',
         type: 'success',
         color: '#10B981',
         colorDark: '#059669',
-        iconComponent: IconUserPlus,
-        details: 'Student ID: STU001, Class: 10th A, Registration Fee: PKR 5,000'
+        details: 'Student: Marcus Wright • $1,250',
+        svg: '<svg width="32" height="59" viewBox="0 0 32 59" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="#D1FAE5"/><path d="M14.4883 19.7617L21.2383 13.0117L20.1836 11.9219L14.4883 17.6172L11.8164 14.9453L10.7617 16L14.4883 19.7617ZM10.6914 10.7266C12.168 9.25 13.9375 8.51172 16 8.51172C18.0625 8.51172 19.8203 9.25 21.2734 10.7266C22.75 12.1797 23.4883 13.9375 23.4883 16C23.4883 18.0625 22.75 19.832 21.2734 21.3086C19.8203 22.7617 18.0625 23.4883 16 23.4883C13.9375 23.4883 12.168 22.7617 10.6914 21.3086C9.23828 19.832 8.51172 18.0625 8.51172 16C8.51172 13.9375 9.23828 12.1797 10.6914 10.7266Z" fill="#059669"/><rect width="1" height="19" transform="translate(15.5 36)" fill="#E2E8F0"/></svg>' // checkmark
       },
       {
-        content: 'Fee payment received from John Doe (PKR 12,500)',
-        time: '30 minutes ago',
+        content: 'New Student Enrollment',
+        time: '45 minutes ago',
         type: 'primary',
         color: '#3B82F6',
         colorDark: '#2563EB',
-        iconComponent: IconCurrencyDollar,
-        details: 'Payment Method: Online, Transaction ID: TXN123456'
+        details: 'Grade 10 • Sarah Jenkins',
+        svg: '<svg width="32" height="59" viewBox="0 0 32 59" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="#DBEAFE"/><path d="M14.2773 18.3555C15.6602 17.793 16.9844 17.5117 18.25 17.5117C19.5156 17.5117 20.8281 17.793 22.1875 18.3555C23.5703 18.8945 24.2617 19.6094 24.2617 20.5V22.0117H12.2383V20.5C12.2383 19.6094 12.918 18.8945 14.2773 18.3555ZM11.5 14.4883H13.75V16H11.5V18.25H9.98828V16H7.73828V14.4883H9.98828V12.2383H11.5V14.4883ZM20.3594 15.1211C19.7734 15.707 19.0703 16 18.25 16C17.4297 16 16.7266 15.707 16.1406 15.1211C15.5547 14.5352 15.2617 13.832 15.2617 13.0117C15.2617 12.1914 15.5547 11.4883 16.1406 10.9023C16.7266 10.293 17.4297 9.98828 18.25 9.98828C19.0703 9.98828 19.7734 10.293 20.3594 10.9023C20.9453 11.4883 21.2383 12.1914 21.2383 13.0117C21.2383 13.832 20.9453 14.5352 20.3594 15.1211Z" fill="#2563EB"/><rect width="1" height="19" transform="translate(15.5 36)" fill="#E2E8F0"/></svg>' // person +
       },
       {
-        content: 'New teacher joined the faculty - Mathematics',
+        content: 'Staff Leave Request',
         time: '2 hours ago',
         type: 'warning',
         color: '#F59E0B',
         colorDark: '#D97706',
-        iconComponent: IconSchool,
-        details: 'Teacher ID: TCH001, Experience: 5 years, Qualification: M.Sc'
+        badge: 'Pending',
+        details: 'Prof. Robert Smith (Medical)',
+        svg: '<svg width="32" height="59" viewBox="0 0 32 59" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="#FEF3C7"/><path d="M15.4727 10.5508C15.6133 10.6914 15.7891 10.7617 16 10.7617C16.2109 10.7617 16.3867 10.6914 16.5273 10.5508C16.668 10.3867 16.7383 10.1992 16.7383 9.98828C16.7383 9.77734 16.668 9.60156 16.5273 9.46094C16.3867 9.32031 16.2109 9.25 16 9.25C15.7891 9.25 15.6133 9.32031 15.4727 9.46094C15.332 9.60156 15.2617 9.77734 15.2617 9.98828C15.2617 10.1992 15.332 10.3867 15.4727 10.5508ZM16.7383 17.5117V13.0117H15.2617V17.5117H16.7383ZM16.7383 20.5V18.9883H15.2617V20.5H16.7383ZM21.2383 9.25C21.6367 9.25 21.9883 9.40234 22.293 9.70703C22.5977 10.0117 22.75 10.3633 22.75 10.7617V21.2383C22.75 21.6367 22.5977 21.9883 22.293 22.293C21.9883 22.5977 21.6367 22.75 21.2383 22.75H10.7617C10.3633 22.75 10.0117 22.5977 9.70703 22.293C9.40234 21.9883 9.25 21.6367 9.25 21.2383V10.7617C9.25 10.3633 9.40234 10.0117 9.70703 9.70703C10.0117 9.40234 10.3633 9.25 10.7617 9.25H13.8906C14.0547 8.80469 14.3242 8.44141 14.6992 8.16016C15.0742 7.87891 15.5078 7.73828 16 7.73828C16.4922 7.73828 16.9258 7.87891 17.3008 8.16016C17.6758 8.44141 17.9453 8.80469 18.1094 9.25H21.2383Z" fill="#D97706"/><rect width="1" height="19" transform="translate(15.5 36)" fill="#E2E8F0"/></svg>' // calendar
       },
       {
-        content: 'Maintenance scheduled for Block A tomorrow',
-        time: '3 hours ago',
+        content: 'Exam Results Published',
+        time: 'Yesterday at 4:30 PM',
         type: 'info',
         color: '#6366F1',
         colorDark: '#4F46E5',
-        iconComponent: IconAlertCircle,
-        details: 'Maintenance Type: Electrical, Duration: 4 hours, Affected Area: Block A'
+        details: 'Semester 1 • Finals',
+        svg: '<svg width="32" height="59" viewBox="0 0 32 59" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="#F3E8FF"/><path d="M16.3867 13.0117V16.1758L18.9883 17.7578L18.4609 18.6719L15.2617 16.7383V13.0117H16.3867ZM22.75 14.5938H17.6523L19.7266 12.4844C18.6953 11.4531 17.4531 10.9375 16 10.9375C14.5703 10.9141 13.3398 11.4062 12.3086 12.4141C11.8867 12.8359 11.5234 13.4102 11.2188 14.1367C10.9141 14.8398 10.7617 15.4844 10.7617 16.0703C10.7617 16.6562 10.9141 17.3125 11.2188 18.0391C11.5234 18.7422 11.8867 19.3047 12.3086 19.7266C12.7305 20.1484 13.3047 20.5117 14.0312 20.8164C14.7578 21.1211 15.4141 21.2734 16 21.2734C16.5859 21.2734 17.2422 21.1211 17.9688 20.8164C18.7188 20.5117 19.3047 20.1484 19.7266 19.7266C20.7344 18.7188 21.2383 17.5 21.2383 16.0703H22.75C22.75 17.9219 22.0938 19.4922 20.7812 20.7812C19.4688 22.0938 17.875 22.75 16 22.75C14.125 22.75 12.5312 22.0938 11.2188 20.7812C9.90625 19.4922 9.25 17.9336 9.25 16.1055C9.25 14.2539 9.90625 12.6719 11.2188 11.3594C11.7578 10.8203 12.4844 10.3633 13.3984 9.98828C14.3359 9.58984 15.1914 9.39062 15.9648 9.39062C16.7383 9.39062 17.582 9.58984 18.4961 9.98828C19.4336 10.3633 20.1719 10.8203 20.7109 11.3594L22.75 9.25V14.5938Z" fill="#9333EA"/></svg>'
       }
     ])
 
@@ -821,26 +1023,21 @@ export default {
     // Upcoming events with Lucide icons
     const upcomingEvents = ref([
       {
-        title: 'Annual Sports Day',
-        date: 'Dec 15, 2024',
-        description: 'Annual sports competition for all classes',
-        iconComponent: IconTrophy,
-        colorClass: 'bg-gradient-to-br from-yellow-500 to-orange-500'
-      },
-      {
         title: 'Parent-Teacher Meeting',
-        date: 'Dec 20, 2024',
-        description: 'Quarterly parent-teacher meeting',
-        iconComponent: IconUsers,
+        month: 'Oct',
+        date: '15',
+        description: '09:00 AM - 01:00 PM',
         colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-500'
       },
       {
-        title: 'Annual Function',
-        date: 'Dec 25, 2024',
-        description: 'Annual cultural function and prize distribution',
-        iconComponent: IconMusic,
-        colorClass: 'bg-gradient-to-br from-purple-500 to-pink-500'
-      }
+        title: 'Annual Sports Day',
+        month: 'Oct',
+        date: '25',
+        description: 'Main Field • All Day',
+
+        colorClass: 'bg-gradient-to-br from-yellow-500 to-orange-500'
+      },
+      
     ])
 
     return {
@@ -886,11 +1083,11 @@ export default {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: true,
+            display: false,
             position: 'top',
             align: 'end',
             labels: {
-              usePointStyle: true,
+              // usePointStyle: false,
               padding: 20,
               font: {
                 size: 12
@@ -1077,14 +1274,14 @@ export default {
       this.mainDateFilter.endDate = ''
     },
 
-   methods: {
-  buttonClass(period) {
-    return [
-      'px-4 py-2 text-sm rounded-full transition',
-      this.selectedPeriod === period ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
-    ];
-  }
-},
+    methods: {
+      buttonClass(period) {
+        return [
+          'px-4 py-2 text-sm rounded-full transition',
+          this.selectedPeriod === period ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-100'
+        ];
+      }
+    },
 
     toggleCalendar() {
       this.showCalendar = !this.showCalendar
@@ -1495,27 +1692,30 @@ export default {
         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
         datasets: [
           {
-            label: 'Current Month',
+            label: '',
             data: [320000, 380000, 410000, 390000],
             backgroundColor: 'rgba(59, 130, 246, 0.8)',
             borderColor: '#3B82F6',
             borderWidth: 2,
             borderRadius: 4,
             borderSkipped: false,
-            tension: 0.4
+            tension: 0.4,
+            pointRadius: 0 // <-- removes dots
           },
           {
-            label: 'Previous Month',
+            label: '',
             data: [280000, 350000, 380000, 360000],
             backgroundColor: 'rgba(156, 163, 175, 0.8)',
             borderColor: '#9CA3AF',
             borderWidth: 2,
             borderRadius: 4,
             borderSkipped: false,
-            tension: 0.4
+            tension: 0.4,
+            pointRadius: 0 // <-- removes dots
           }
         ]
-      }
+      };
+
 
       // Sample data for pie chart
       this.pieData = {
@@ -2067,5 +2267,22 @@ select:focus-visible {
   color: #9CA3AF !important;
   font-size: 12px !important;
   margin-top: 4px !important;
+}
+
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
 }
 </style>
