@@ -1,42 +1,22 @@
 <template>
-  <div
-    :class="cardClasses"
-    v-bind="accessibilityAttrs"
-    @click="handleClick"
-    @keydown="handleKeydown"
-  >
+  <div :class="Classes" v-bind="accessibilityAttrs" @click="handleClick" @keydown="handleKeydown">
     <!-- Animated Background Glow -->
-    <div
-      v-if="enableGlow"
-      class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-      :style="glowStyles"
-    />
+    <div v-if="enableGlow" class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      :style="glowStyles" />
 
-    <div class="flex items-start gap-2 sm:gap-3 relative z-10">
+    <div class="flex items-center gap-2 sm:gap-3 p-2 bg-[#F8FAFC] relative z-10 shadow-sm rounded-3xl">
       <!-- Icon Container -->
-      <div
-        v-if="showIcon"
-        :class="iconContainerClasses"
-        :style="iconContainerStyles"
-      >
-        <component
-          :is="iconComponent"
-          :size="iconSize"
-          :stroke-width="iconStrokeWidth"
-          class="sm:w-5 sm:h-5 animate-icon-bounce"
-          aria-hidden="true"
-        />
-        <!-- Pulse Ring Animation -->
-        <div
-          v-if="enablePulse"
-          class="absolute inset-0 rounded-xl animate-ping opacity-20"
-          :class="event.colorClass"
-          :style="pulseStyles"
-        />
+      <div class="flex flex-col bg-[#FFFFFF] rounded-2xl items-center p-2 ">
+        <span class="text-xs text-[#64748B] font-bold font-inter ">{{ event.month }}</span>
+        <slot name="date">
+          <p :class="dateClasses">
+            {{ formattedDate }}
+          </p>
+        </slot>
       </div>
 
       <!-- Content Area -->
-      <div class="flex-1 min-w-0">
+      <div class="flex-1 min-w-0 gap-3 ">
         <!-- Title Slot or Default -->
         <slot name="title">
           <h4 :class="titleClasses">
@@ -45,17 +25,7 @@
         </slot>
 
         <!-- Date Slot or Default -->
-        <slot name="date">
-          <p :class="dateClasses">
-            <Calendar
-              :size="ICON_SIZES.xs"
-              :stroke-width="ICON_STROKE_WIDTH.normal"
-              class="inline flex-shrink-0"
-              aria-hidden="true"
-            />
-            {{ formattedDate }}
-          </p>
-        </slot>
+
 
         <!-- Description Slot or Default -->
         <slot name="description">
@@ -73,7 +43,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Calendar } from 'lucide-vue-next'
 import { useInteractiveCard } from '@/composables/useInteractiveCard'
 import { ICON_SIZES, ICON_STROKE_WIDTH, COMPONENT_SIZES } from '@/constants/componentConstants'
 
@@ -156,10 +125,7 @@ const props = defineProps({
    * @type {Boolean}
    * @default true
    */
-  showIcon: {
-    type: Boolean,
-    default: true
-  },
+
 
   /**
    * Custom glow color (hex format)
@@ -212,7 +178,7 @@ const emit = defineEmits({
 
 // Use interactive card composable
 const {
-  cardClasses,
+  Classes,
   glowStyles,
   handleClick,
   handleKeydown,
@@ -220,58 +186,58 @@ const {
 } = useInteractiveCard(props, emit)
 
 // Computed properties for performance optimization
-const iconComponent = computed(() => props.event.iconComponent || null)
+// const iconComponent = computed(() => props.event.iconComponent || null)
 
-const iconSize = computed(() => {
-  return COMPONENT_SIZES[props.size]?.iconSize || ICON_SIZES.md
-})
+// const iconSize = computed(() => {
+//   return COMPONENT_SIZES[props.size]?.iconSize || ICON_SIZES.md
+// })
 
-const iconStrokeWidth = computed(() => ICON_STROKE_WIDTH.bold)
+// const iconStrokeWidth = computed(() => ICON_STROKE_WIDTH.bold)
 
-const iconContainerClasses = computed(() => {
-  const base = [
-    'relative',
-    'rounded-xl',
-    'flex',
-    'items-center',
-    'justify-center',
-    'text-white',
-    'shadow-lg',
-    'group-hover:scale-110',
-    'group-hover:rotate-6',
-    'transition-all',
-    'duration-300',
-    'flex-shrink-0'
-  ]
+// const iconContainerClasses = computed(() => {
+//   const base = [
+//     'relative',
+//     'rounded-xl',
+//     'flex',
+//     'items-center',
+//     'justify-center',
+//     'text-white',
+//     'shadow-lg',
+//     'group-hover:scale-110',
+//     'group-hover:rotate-6',
+//     'transition-all',
+//     'duration-300',
+//     'flex-shrink-0'
+//   ]
 
-  const sizeClass = COMPONENT_SIZES[props.size]?.iconContainer || 'w-12 h-12'
-  const colorClass = props.event.colorClass || 'bg-gradient-to-br from-indigo-500 to-purple-500'
+//   const sizeClass = COMPONENT_SIZES[props.size]?.iconContainer || 'w-12 h-12'
+//   const colorClass = props.event.colorClass || 'bg-gradient-to-br from-indigo-500 to-purple-500'
 
-  return [...base, sizeClass, colorClass].join(' ')
-})
+//   return [...base, sizeClass, colorClass].join(' ')
+// })
 
-const iconContainerStyles = computed(() => {
-  if (props.event.color && !props.event.colorClass) {
-    return {
-      background: `linear-gradient(135deg, ${props.event.color}, ${props.event.colorDark || props.event.color})`
-    }
-  }
-  return {}
-})
+// const iconContainerStyles = computed(() => {
+//   if (props.event.color && !props.event.colorClass) {
+//     return {
+//       background: `linear-gradient(135deg, ${props.event.color}, ${props.event.colorDark || props.event.color})`
+//     }
+//   }
+//   return {}
+// })
 
-const pulseStyles = computed(() => {
-  if (props.event.color && !props.event.colorClass) {
-    return {
-      backgroundColor: props.event.color
-    }
-  }
-  return {}
-})
+// const pulseStyles = computed(() => {
+//   if (props.event.color && !props.event.colorClass) {
+//     return {
+//       backgroundColor: props.event.color
+//     }
+//   }
+//   return {}
+// })
 
 const titleClasses = computed(() => {
   const base = [
     'font-bold',
-    'text-gray-900',
+    'text-[#0F172A]',
     'group-hover:text-indigo-600',
     'transition-colors'
   ]
@@ -281,20 +247,20 @@ const titleClasses = computed(() => {
 
 const dateClasses = computed(() => {
   return [
-    'text-xs',
-    'text-gray-500',
-    'mt-1',
-    'flex',
-    'items-center',
-    'gap-1.5'
+    'text-sm',
+    'text-[#7F13EC]',
+    'font-Bold',
+    'font-inter'
+
   ].join(' ')
 })
 
 const descriptionClasses = computed(() => {
   return [
-    'text-xs',
-    'text-gray-600',
-    'mt-1',
+    'text-[10px]',
+    'text-[#64748B]',
+    'font-normal',
+    'font-inter',
     'sm:mt-1.5'
   ].join(' ')
 })
@@ -303,4 +269,3 @@ const formattedDate = computed(() => {
   return props.event.date || props.event.formattedDate || 'Date not available'
 })
 </script>
-

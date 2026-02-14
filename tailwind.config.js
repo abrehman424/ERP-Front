@@ -24,6 +24,7 @@ export default {
       fontFamily: {
         'sans': ['Poppins', 'system-ui', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif'],
+        'inter': ['inter']
       },
       colors: {
         'indigo': {
