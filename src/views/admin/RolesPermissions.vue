@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="roles-permissions-container">
     <!-- Header -->
     <div class="page-header">
@@ -962,4 +962,4 @@ export default {
 .modal-body {
   padding: 20px;
 }
-</style>
+</style> -->
