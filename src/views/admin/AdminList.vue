@@ -3,7 +3,7 @@
     <div class="page-header">
       <h2>Admin Management</h2>
       <div class="header-actions">
-        <el-button type="primary" @click="showPermissionDialog">
+        <!-- <el-button type="primary" @click="showPermissionDialog">
           <el-icon><Setting /></el-icon>
           <span class="button-text">Manage Permissions</span>
         </el-button>
@@ -14,7 +14,15 @@
         <el-button type="primary" @click="showRolePermissionDialog">
           <el-icon><Setting /></el-icon>
           <span class="button-text">Role Permissions</span>
-        </el-button>
+        </el-button> -->
+        <el-button
+  type="primary"
+  @click="router.push('/roles-permission')"
+>
+  <el-icon><Setting /></el-icon>
+  <span class="button-text">Roles & Permissions</span>
+</el-button>
+
         <el-button type="primary" @click="showCreateDialog">
           <el-icon><Plus /></el-icon>
           <span class="button-text">Add Admin</span>
@@ -478,15 +486,24 @@
           :rules="roleRules"
           label-position="top"
         >
-          <el-form-item label="Role Name" prop="name">
-            <el-input 
-              v-model="roleForm.name" 
-              placeholder="Enter role name"
-              :disabled="isEditRole && roleForm.name === 'Super Admin'"
-            />
-          </el-form-item>
+    <el-form-item label="Role" prop="name">
+  <el-radio-group
+    v-model="roleForm.name"
+    :disabled="isEditRole && roleForm.name === 'Super Admin'"
+    class="flex flex-wrap gap-4"
+  >
+    <el-radio label="Super Admin">Super Admin</el-radio>
+    <el-radio label="Receptionist">Receptionist</el-radio>
+    <el-radio label="User">User</el-radio>
+    <el-radio label="Admin">Admin</el-radio>
+    <el-radio label="Accountant">Accountant</el-radio>
+  </el-radio-group>
+</el-form-item>
+
+
+
           
-          <el-form-item label="Description" prop="description">
+          <!-- <el-form-item label="Description" prop="description">
             <el-input 
               v-model="roleForm.description" 
               type="textarea" 
@@ -497,7 +514,7 @@
             <div class="word-count" :class="{ 'exceeded': descriptionWordCount > 200 }">
               {{ descriptionWordCount }}/200 words
             </div>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
       </div>
 
@@ -592,13 +609,38 @@
           :rules="permissionRules"
           label-position="top"
         >
-          <el-form-item label="Permission Name" prop="name">
+          <!-- <el-form-item label="Permission Name" prop="name">
             <el-input 
               v-model="permissionForm.name" 
               placeholder="Enter permission name"
             />
-          </el-form-item>
+          </el-form-item> -->
           
+     <el-form-item label="Permissions">
+  <div
+    v-for="module in permissionModules"
+    :key="module.key" 
+    class="flex flex-col gap-2  rounded-lg p-4"
+  >
+    <h4 class="font-semibold mb-3">{{ module.name }}</h4>
+
+    <el-checkbox-group
+      v-model="permissionForm.permissions"
+      class="flex flex-wrap gap-4"
+      :disabled="roleForm.name === 'Super Admin'"
+    >
+      <el-checkbox
+        v-for="action in module.actions"
+        :key="action"
+        :label="`${module.key}.${action}`"
+      >
+        {{ action }}
+      </el-checkbox>
+    </el-checkbox-group>
+  </div>
+</el-form-item>
+
+
           <el-form-item label="Guard Name" prop="guard_name">
             <el-input 
               v-model="permissionForm.guard_name" 
@@ -831,6 +873,8 @@ import {
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router'
 
+
+
 // State
 const route = useRoute()
 const router = useRouter()
@@ -923,6 +967,55 @@ const adminRules = {
     { required: true, message: 'Please select status', trigger: 'change' }
   ]
 }
+
+
+/* 1️⃣ Permission Modules */
+const permissionModules = [
+  { name: "Users", key: "users", actions: ["view", "create", "edit", "delete"] },
+  { name: "Students", key: "students", actions: ["view", "create", "edit", "delete"] },
+  { name: "Finance", key: "finance", actions: ["view", "create", "edit"] }
+]
+
+/* 2️⃣ Default Role Permissions */
+const rolePermissions = {
+  "Student": ["students.view"],
+  "Teacher": ["students.view", "students.edit"],
+  "Accountant": ["finance.view", "finance.edit"],
+  "Admin": [
+    "users.view",
+    "users.create",
+    "students.view",
+    "finance.view"
+  ],
+  "Super Admin": "ALL"
+}
+
+/* 3️⃣ Role Form */
+const roleForm = ref({
+  name: ''
+})
+
+/* 4️⃣ Permission Form */
+const permissionForm = ref({
+  permissions: []
+})
+
+/* 5️⃣ WATCHER (Add Here 👇) */
+watch(() => roleForm.value.name, (newRole) => {
+
+  if (newRole === "Super Admin") {
+    permissionForm.value.permissions = permissionModules.flatMap(module =>
+      module.actions.map(action => `${module.key}.${action}`)
+    )
+    return
+  }
+
+  permissionForm.value.permissions = rolePermissions[newRole] || []
+
+});
+
+
+
 
 // Add form ref
 const adminFormRef = ref(null)
@@ -1197,11 +1290,6 @@ const roleCurrentPage = ref(1)
 const rolePageSize = ref(10)
 const roleTotalItems = ref(0)
 
-const roleForm = ref({
-  id: null,
-  name: '',
-  description: ''
-})
 
 const roleRules = {
   name: [
@@ -1395,27 +1483,21 @@ const permissionCurrentPage = ref(1)
 const permissionPageSize = ref(10)
 const permissionTotalItems = ref(0)
 
-const permissionForm = ref({
-  id: null,
-  name: '',
-  guard_name: 'web'
-})
 
-const permissionRules = {
-  name: [
-    { required: true, message: 'Please enter permission name', trigger: 'blur' },
-    { min: 3, message: 'Permission name must be at least 3 characters', trigger: 'blur' }
-  ],
-  guard_name: [
-    { required: true, message: 'Please enter guard name', trigger: 'blur' }
-  ]
-}
+
+// const permissionRules = {
+//   name: [
+//     { required: true, message: 'Please enter permission name', trigger: 'blur' },
+//     { min: 3, message: 'Permission name must be at least 3 characters', trigger: 'blur' }
+//   ],
+//   guard_name: [
+//     { required: true, message: 'Please enter guard name', trigger: 'blur' }
+//   ]
+// }
 
 // Permission Management Methods
-const showPermissionDialog = async () => {
-  permissionDialogVisible.value = true
-  await fetchPermissions()
-}
+
+
 
 const fetchPermissions = async () => {
   try {
@@ -1863,25 +1945,67 @@ const showAssignedRoles = async (admin) => {
 const showRoles = ref(false)
 
 // Update the viewAdmin method
+// const toggleRolesView = async () => {
+//   if (!showRoles.value) {
+//     try {
+//       loading.value = true
+//       const response = await axios.get(`/admins/${viewAdminData.value.id}/roles`)
+//       if (response.data && response.data.data) {
+//         assignedRoles.value = response.data.data
+//       } else {
+//         assignedRoles.value = []
+//       }
+//     } catch (error) {
+//       console.error('Error fetching assigned roles:', error)
+//       toast.error('Failed to load assigned roles')
+//     } finally {
+//       loading.value = false
+//     }
+//   }
+//   showRoles.value = !showRoles.value
+// }
+
+
 const toggleRolesView = async () => {
   if (!showRoles.value) {
     try {
       loading.value = true
       const response = await axios.get(`/admins/${viewAdminData.value.id}/roles`)
-      if (response.data && response.data.data) {
-        assignedRoles.value = response.data.data
-      } else {
-        assignedRoles.value = []
-      }
-    } catch (error) {
-      console.error('Error fetching assigned roles:', error)
-      toast.error('Failed to load assigned roles')
+      assignedRoles.value = response.data?.data || []
+    } catch {
+      toast.error('Failed to load roles')
     } finally {
       loading.value = false
     }
   }
   showRoles.value = !showRoles.value
 }
+
+/* -------------------------------------------------
+   ASSIGN ROLE TO ADMIN
+------------------------------------------------- */
+
+
+
+
+
+
+watch(() => route.path, (newPath) => {
+  if (newPath === '/admin/list') {
+    fetchAdmins()
+  }
+}, { immediate: true })
+
+watch([searchQuery, emailFilter, statusFilter], () => {
+  currentPage.value = 1
+  fetchAdmins()
+})
+
+watch([currentPage, pageSize], () => {
+  fetchAdmins()
+})
+
+onMounted(fetchAdmins)
 </script>
 
 <style scoped lang="scss">
